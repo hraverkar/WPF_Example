@@ -1,0 +1,41 @@
+﻿<Window x:Class="CanExecute_to_ApplicationCommands.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CanExecute_to_ApplicationCommands"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+  <Window.Resources>
+    <CommandBinding x:Key="binding" Command="ApplicationCommands.Save"
+               Executed="SaveCommand" CanExecute="SaveCommand_CanExecute"/>
+  </Window.Resources>
+    <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto" />
+      <RowDefinition></RowDefinition>
+      <RowDefinition></RowDefinition>
+    </Grid.RowDefinitions>
+
+    <Menu Grid.Row="0">
+      <MenuItem Header="File">
+        <MenuItem Command="New"/>
+        <MenuItem Command="Open"/>
+        <MenuItem Command="Save"/>
+        <MenuItem Command="SaveAs"/>
+        <Separator></Separator>
+        <MenuItem Command="Close"/>
+      </MenuItem>
+    </Menu>
+
+    <TextBox Margin="5" Grid.Row="2" TextWrapping="Wrap" AcceptsReturn="True"
+             TextChanged="TextBox_TextChanged">
+      <TextBox.CommandBindings>
+        <StaticResource ResourceKey="binding"></StaticResource>
+      </TextBox.CommandBindings>
+      
+    </TextBox>
+      
+    </Grid>
+</Window>
